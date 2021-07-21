@@ -28,11 +28,9 @@ int main() {
         cout << i << " ";
     cout << endl;
     
-    auto data2 = build_array(1,'f',2.0);
+    // 공통 타입으로 변환 할 수 없어서 에러 발생
+    //auto data2 = build_array(1,'fllo',2.0);
 
-    for(auto i:data2)
-        cout << i << " ";
-    cout << endl;
-
+    
     return 0;
 }
