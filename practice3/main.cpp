@@ -46,11 +46,15 @@ int main() {
     for(auto i : vec)
         cout << i << " ";
     cout << endl;
-
+    
     vec.pop_back(); // {0,1,2,3,4,5,6,7,8}
     
     vec.erase(vec.begin()); //{1,2,3,4,5,6,7,8}
-    
+    for(auto i : vec)
+        cout << i << " ";
+    cout << endl;
+
+
     vec.erase(vec.begin()+1, vec.begin()+4); //{1,5,6,7,8}
     for(auto i : vec)
         cout << i << " ";
