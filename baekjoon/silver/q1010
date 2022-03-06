@@ -1,0 +1,42 @@
+//
+//  main.cpp
+//  StudyGroup
+//
+//  Created by 지원 on 2022/03/06.
+//
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    // insert code here...
+    // 백준 1010번
+    
+    // 입력
+    int test;
+    int n,m;
+    cin >> test;
+    // long long (8bytes) : int형 연산에서 벗어나는 범위일 때 사용
+    long long num = 1;
+    
+    for(int i = 0; i < test; i++){
+        num = 1;
+        cin >> n >> m;
+        if(n > (m/2)){
+            n = m-n;
+        }
+        for(int j = m; j > m-n; j--){
+            num *= j;
+        }
+        for(int j = n; j > 0; j--){
+            num /= j;
+        }
+        // 출력
+        cout << num << endl;
+    }
+        
+    
+    
+    
+    return 0;
+}
