@@ -1,0 +1,61 @@
+//  Created by gogowonji on 2022/03/27.
+//
+
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+int input[500001];
+
+bool binary_search(int n, int target){
+    int start = 0;
+    int end = n - 1;
+    while (start <= end)
+    {
+        int mid = (start + end)/2;
+        
+        if(input[mid] == target){
+            return 1;
+        }else if(input[mid] > target){
+            end = mid - 1;
+        }else{
+            start = mid + 1;
+        }
+    }
+    return 0;
+}
+
+
+int main() {
+    // insert code here...
+    // 백준 10815번 숫자 카드
+    /*
+     숫자 카드는 정수 하나가 적혀져 있는 카드이다. 상근이는 숫자 카드 N개를 가지고 있다. 정수 M개가 주어졌을 때, 이 수가 적혀있는 숫자 카드를 상근이가 가지고 있는지 아닌지를 구하는 프로그램
+     */
+    
+    ios_base::sync_with_stdio(0);
+    cin.tie(NULL);
+        
+    int n,m;
+    
+    cin >> n;
+    for(int i = 0; i < n; i++){
+        cin >> input[i];
+    }
+   
+    sort(input, input+n);
+
+    cin >> m;
+    
+    for(int j =0; j < m; j++){
+        int k;
+        cin >> k;
+        cout << binary_search(n,k) << " ";
+    }
+    
+    
+    
+    
+    return 0;
+}
