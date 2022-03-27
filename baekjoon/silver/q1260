@@ -1,0 +1,77 @@
+#include <iostream>
+#include <queue>
+using namespace std;
+
+// 백준 1260번 DFS BFS
+/*
+ 그래프를 DFS로 탐색한 결과와 BFS로 탐색한 결과를 출력하는 프로그램을 작성하시오. 단, 방문할 수 있는 정점이 여러 개인 경우에는 정점 번호가 작은 것을 먼저 방문하고, 더 이상 방문할 수 있는 점이 없는 경우 종료한다. 정점 번호는 1번부터 N번까지이다.
+ */
+
+#define MAX 1001
+int n, m, v;
+int map[MAX][MAX];
+bool visited[MAX];
+queue<int> q;
+
+// visited 배열 리셋
+void reset(){
+    for(int i = 1; i <= n; i++){
+        visited[i] = 0;
+    }
+}
+
+// 깊이 우선 탐색
+void DFS(int v) {
+    visited[v] = true;
+    cout << v << " ";
+    for(int i = 1; i <= n; i++){
+        // 정점 연결 && 방문한 적 없음
+        if(map[v][i] == 1 && visited[i] == 0)
+            DFS(i);
+    }
+    
+}
+
+// 너비 우선 탐색
+void BFS(int v){
+    q.push(v);
+    visited[v] = true;
+    cout << v << " ";
+    while(!q.empty()){
+        v = q.front();
+        q.pop();
+        
+        // 너비만큼 돌아가기
+        for(int i = 1; i <= n; i++){
+            // 정점 연결 && 방문한 적 없음
+            if(map[v][i] == 1 && visited[i] == 0){
+                q.push(i);
+                visited[i] = true;
+                cout << i << " ";
+            }
+                
+        }
+    }
+}
+
+int main() {
+    // insert code here...
+        
+    cin >> n >> m >> v;
+    
+    for(int i = 0; i < m; i++){
+        int a,b;
+        cin >> a >> b;
+        // 양방향
+        map[a][b] = 1;
+        map[b][a] = 1;
+    }
+    
+    DFS(v);
+    cout << "\n";
+    reset();
+    BFS(v);
+        
+        
+    return 0;
+}
