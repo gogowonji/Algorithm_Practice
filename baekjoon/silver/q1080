@@ -1,0 +1,65 @@
+//  Created by gogowonji on 2022/04/01.
+//
+
+#include <iostream>
+using namespace std;
+
+int a[51][51];
+int b[51][51];
+
+
+int main() {
+    // insert code here...
+        
+    
+    int count = 0;
+    int n,m;
+    char c;
+    cin >> n >> m;
+    
+    
+
+    for(int i = 0; i < n; i++){
+        
+        for(int j = 0; j < m; j++){
+            cin >> c;
+            a[i][j] = c - 48;
+        }
+    }
+    
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < m; j++){
+            cin >> c;
+            b[i][j] = c - 48;
+        }
+    }
+    
+    
+    for(int i = 0; i < n-2; i++){
+        for(int j = 0; j < m-2; j++){
+            if (a[i][j] != b[i][j]){
+                for(int fh = i; fh <= i+2; fh++){
+                    for(int fw = j; fw <= j+2; fw++){
+                        a[fh][fw] = 1 - a[fh][fw];
+                    }
+                }
+                count++;
+            }else continue;
+            
+        }
+    }
+    
+    
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < m; j++){
+            if(a[i][j] != b[i][j]){
+                cout << "-1\n";
+                return 0;
+            }
+        }
+    }
+    
+    cout << count << "\n";
+
+    return 0;
+}
