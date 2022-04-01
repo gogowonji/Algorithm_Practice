@@ -1,0 +1,44 @@
+//  Created by gogowonji on 2022/04/01.
+//
+
+#include <iostream>
+#include <utility>
+#include <algorithm>
+using namespace std;
+
+pair<int,int> score[100000];
+
+int main() {
+    // insert code here...
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    
+    
+    int t_num;
+    int people;
+    cin >> t_num;
+        
+    while(t_num--){
+        cin >> people;
+        for(int i = 0; i < people; i++){
+            cin >> score[i].first >> score[i].second;
+        }
+        sort(score, score+people);
+        int apply = 1;
+        int before = score[0].second;
+        for(int i = 1; i < people; i++){
+            if(score[i].second == 1){
+                apply++;
+                break;
+            }else if(score[i].second < before){
+                apply++;
+                before = score[i].second;
+            }
+        }
+        cout << apply << "\n";
+        
+    }
+    
+    
+    return 0;
+}
