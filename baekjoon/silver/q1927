@@ -1,0 +1,40 @@
+//  Created by gogowonji on 2022/04/08.
+//
+
+#include <iostream>
+#include <queue>
+using namespace std;
+
+int main() {
+    // insert code here...
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    
+    priority_queue<int,vector<int>,greater<int>> min_que;
+    int n;
+    int temp = 0;
+    
+    cin >> n;
+    
+    while(n--){
+        cin >> temp;
+        
+        // 0 입력시
+        if(temp == 0){
+            // 비어있을 경우
+            if(min_que.empty() == true){
+                cout << 0 << "\n";
+                continue;
+            }
+            cout << min_que.top() << "\n";
+            min_que.pop();
+            
+        } // 자연수 입력시
+        else{
+            min_que.push(temp);
+            
+        }
+        
+    }
+    return 0;
+}
