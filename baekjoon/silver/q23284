@@ -1,0 +1,56 @@
+//  Created by gogowonji on 2022/04/08.
+//
+
+#include <iostream>
+#include <stack>
+#include <vector>
+using namespace std;
+
+int n;
+vector<int> s, a;
+
+void print(){
+    for(int i : a)
+        cout << i << ' ';
+    for(int i = ((int)s.size()) - 1; i >= 0; i--)
+        cout << s[i] << ' ';
+    cout << '\n';
+}
+
+void seq(int x){
+    if(x > n) {
+        print();
+        return;
+    }
+    for(int i = int(s.size()); i >= 0; i--) {
+        for(int j=0; j<i; j++) {
+            // s에서 꺼내서 삭제 -> a로 이동
+            a.push_back(s.back());
+            s.pop_back();
+        }
+        // s에 x 값 추가 (오름차순 1 -> 2 -> 3 -> ...)
+        s.push_back(x);
+        seq(x+1);
+        
+        s.pop_back();
+        //사전순 출력 위해
+        //다시 a에서 꺼내서 삭제 -> s로 이동
+        for(int j=0; j<i; j++) {
+            s.push_back(a.back());
+            a.pop_back();
+        }
+    }
+}
+
+
+int main() {
+    // insert code here...
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    
+    cin >> n;
+    
+    seq(1);
+    
+    return 0;
+}
