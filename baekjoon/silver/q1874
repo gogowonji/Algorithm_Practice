@@ -1,0 +1,56 @@
+//  Created by gogowonji on 2022/04/15.
+//
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+vector<int> e; // 원 수열
+vector<int> s; // 스택
+vector<char> a; // 결과 저장
+
+
+int main() {
+    // insert code here...
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int n; // 숫자 개수
+    int k; // 받아오는 값
+    int now = 0; // 원 수열 비교 위해
+    
+    cin >> n;
+    for(int i = 0; i < n; i++){
+        
+        cin >> k;
+        e.push_back(k);
+        
+    }
+    
+    for(int i = 1; i <= n; i++){
+        
+        s.push_back(i);
+        a.push_back('+');
+        
+        while(!s.empty() && s.back() == e[now]){
+            s.pop_back();
+            a.push_back('-');
+            now++;
+        }
+        
+    }
+    
+    if (!s.empty()){
+        cout << "NO";
+        
+    }
+    else {
+        for (int i = 0; i < a.size(); i++)
+            cout << a[i] << '\n';
+        
+    }
+    
+    
+    
+    return 0;
+}
