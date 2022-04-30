@@ -1,0 +1,35 @@
+//  Created by gogowonji on 2022/04/30.
+//
+
+#include <iostream>
+#include <queue>
+using namespace std;
+
+int main() {
+    // insert code here...
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    
+    priority_queue<int, vector<int>> max_que;
+    int n;
+    int temp;
+    
+    cin >> n;
+    
+    while(n--){
+        cin >> temp;
+        
+        if(temp == 0){
+            if(max_que.empty() == true){
+                cout << 0 << "\n";
+                continue;
+            }
+            cout << max_que.top() << "\n";
+            max_que.pop();
+        }else{
+            max_que.push(temp);
+        }
+    }
+    
+    return 0;
+}
