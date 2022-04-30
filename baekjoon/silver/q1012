@@ -1,0 +1,86 @@
+//  Created by gogowonji on 2022/04/30.
+//
+
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+#define MAX 51
+bool visited[MAX][MAX];
+
+// 인접 배추 탐색 위한 방향 배열
+int dx[] = {-1,1,0,0}; // 가로로 좌, 우
+int dy[] = {0,0,1,-1}; // 세로로 상, 하
+
+int a[51][51]; // 인접 그래프 aka 배추밭
+int m, n, k; // 배추밭 가로, 세로, 배추 개수
+
+void DFS(int x, int y){
+    visited[x][y] = true;
+    
+    for(int i = 0; i < 4; i++){
+        
+        // 탐색할 배추의 위치 (좌, 우, 상, 하)
+        int nx = x + dx[i];
+        int ny = y + dy[i];
+        
+        // 탐색 위치가 배추밭 내부에 있다면
+        if(nx >= 0 && nx < n
+           && ny >=0 && ny < m){
+            
+            // 해당 위치에 배추가 있다면
+            if(a[nx][ny] == 1){
+                
+                // 방문 하지 않았다면 dfs로 계속 탐색하면서 지렁이 하나로 어디까지 가는지 확인
+                if(!visited[nx][ny])
+                    DFS(nx,ny);
+            }
+        }
+        else
+            continue;
+    }
+}
+
+int main() {
+    // insert code here...
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    
+    int t;
+    cin >> t;
+    
+    while(t--){
+        cin >> m >> n >> k;
+        int cnt = 0; // 지렁이 개수
+        
+        // 인접 그래프
+        for(int i = 0; i < k; i++){
+            int x,y;
+            cin >> x >> y; // 범위 : m, n
+            
+            a[y][x] = 1; // 반대로 들어가야 제자리
+        }
+        
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < m; j++){
+                // 배추가 있다면
+                if(a[i][j] == 1){
+                    // 방문한 노드가 아니라면
+                    if(!visited[i][j]){
+                        cnt++; // 지렁이 추가
+                        DFS(i,j); // 탐색
+                    }
+                }
+            }
+        }
+        
+        cout << cnt << "\n";
+        
+        //초기화
+        memset(visited, false, sizeof(visited));
+        memset(a, 0, sizeof(a));
+        
+    }
+    
+    return 0;
+}
