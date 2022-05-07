@@ -1,0 +1,39 @@
+//  Created by gogowonji on 2022/05/07.
+//
+
+#include <iostream>
+#include <map>
+#include <string>
+using namespace std;
+
+int main() {
+    // insert code here...
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    
+    map<string, int> closet;
+    //map<string, int>::iterator iter;
+    int t, n;
+    int cnt = 0;
+    
+    cin >> t;
+    
+    while(t--){
+        //초기화
+        cnt = 1;
+        closet.clear();
+        
+        cin >> n;
+        while(n--){
+            string name, type;
+            cin >> name >> type;
+            closet[type]++;
+        }
+        for(auto iter = closet.begin(); iter != closet.end(); iter++){
+            cnt *= iter->second + 1;
+        }
+        cout << cnt-1 << "\n";
+    }
+    
+    return 0;
+}
