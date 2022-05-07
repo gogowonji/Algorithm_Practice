@@ -1,0 +1,40 @@
+//  Created by gogowonji on 2022/05/07.
+//
+
+#include <iostream>
+#include <map>
+#include <string>
+using namespace std;
+
+int main() {
+    // insert code here...
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    
+    map<int, string> poke_str;
+    map<string, int> poke_num;
+    int n,m;
+    
+    cin >> n >> m;
+    
+    for(int i = 1; i <= n; i++){
+        string name;
+        cin >> name;
+        poke_str.insert(pair<int,string>(i,name));
+        poke_num.insert(pair<string,int>(name,i));
+    }
+    
+    while(m--){
+        char q[21];
+        cin >> q;
+        
+        if(isdigit(q[0]) != 0){ // 숫자라면
+            int num = atoi(q);
+            cout << poke_str[num] << "\n";
+        }else { // 문자라면
+            cout << poke_num[q] << "\n";
+        }
+    }
+    
+    return 0;
+}
