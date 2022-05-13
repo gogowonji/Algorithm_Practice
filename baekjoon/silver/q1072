@@ -1,0 +1,45 @@
+//  Created by gogowonji on 2022/05/13.
+//
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+#define MAX 1000000000
+
+int main() {
+    // insert code here...
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    
+    long long x,y,z; //단위 (int 사용하면 z가 문제 발생 -> 100곱해주니까)
+    int cnt = 0;
+    
+    cin >> x >> y;
+    
+    z = 100 * y / x;
+    
+    if(z >= 99){
+        cout << -1 << "\n";
+        return 0;
+    }
+    
+    int min = 0, max = MAX;
+    
+    while(min <= max) {
+        int mid = (min + max) / 2;
+        
+        int temp = (100 * (y+mid)) / (x+mid);
+        
+        if(z >= temp){ // 기존 승률보다 작음
+            cnt = mid + 1;
+            min = mid + 1;
+        }else{ // 기존 승률보다 큼
+            max = mid - 1;
+        }
+    }
+     
+    cout << cnt << "\n";
+    
+    return 0;
+}
