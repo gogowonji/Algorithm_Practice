@@ -1,0 +1,45 @@
+//  Created by gogowonji on 2022/05/21.
+//
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+const int MAX = 100000;
+
+int main() {
+    // insert code here...
+    int n;
+    pair<long long, long long> ro_pri[MAX];
+    long long result;
+    
+    //입력
+    cin >> n;
+    
+    for(int i = 0; i < n-1; i++){
+        cin >> ro_pri[i].first;
+    }
+    
+    for(int i = 0; i < n; i++){
+        cin >> ro_pri[i].second;
+    }
+    
+    //현재 주유소
+    int now = 0;
+    //최소 주유 비용
+    result = ro_pri[now].first * ro_pri[now].second;
+    
+    for(int i = 1; i < n; i++){
+        //now 주유소 가격이 더 비쌈 -> 다음 주유소에서 기름 넣어
+        //now 주유소 가격이 더 쌈 -> now 주유소에서 기름 넣어
+        if(ro_pri[now].second > ro_pri[i].second){
+            now = i;
+        }//다음 road 기름을 now에서 넣을지 다음 주요소에서 넣을지 결정
+        result += ro_pri[i].first * ro_pri[now].second;
+    }
+    
+    cout << result;
+    
+    return 0;
+}
