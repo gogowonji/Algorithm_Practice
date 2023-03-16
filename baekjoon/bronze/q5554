@@ -1,0 +1,17 @@
+#include <iostream>
+using namespace std;
+int main(){
+    //초 단위 -> 분, 초 단위로 바꾸기
+    int sec = 0;
+    int temp = 0;
+    int min;
+    
+    for(int i = 0; i < 4; i++){
+        cin >> temp;
+        sec += temp;
+    }
+    min = sec / 60;
+    sec = sec % 60;
+    cout << min << endl << sec << endl;
+    
+}
