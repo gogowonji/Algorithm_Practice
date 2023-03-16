@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+int main(){
+    int L,P;
+    int np1,np2,np3,np4,np5;
+    cin >> L >> P;
+    cin >> np1 >> np2 >> np3 >> np4 >> np5;
+    int pred = L * P;
+    cout << (np1-pred) << " "<< (np2-pred) <<" "<< (np3-pred) <<" "<< (np4-pred) <<" "<< (np5-pred) << endl;
+       
+}
+
+#include <iostream>
+using namespace std;
+int main(){
+    int L,P;
+    int np;
+    cin >> L >> P;
+    for(int i = 0; i < 5; i++){
+        cin >> np;
+        cout << np-L*P<< " ";
+    }
+    cout << endl;
+}
+
